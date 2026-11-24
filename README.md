@@ -20,7 +20,7 @@ Posts are Markdown or MDX files in `src/content/blog/`. The file name is the URL
 ```yaml
 ---
 title: My post
-description: One line for the blog list and RSS.
+description: One line for the blog list and the page description.
 pubDate: 2026-11-24
 draft: true
 ---
