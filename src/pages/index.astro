@@ -1,0 +1,61 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { getPosts } from '../posts';
+
+const LATEST_POST_COUNT = 5;
+const latestPosts = (await getPosts()).slice(0, LATEST_POST_COUNT);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>Liz Stanley</h1>
+			<p>
+				I'm a software engineer, and the compiler for the
+				<a href="https://www.bloomingtoncbc.org/">Bloomington, MN Christmas Bird Count</a>.
+			</p>
+
+			<h2>Projects</h2>
+			<ul>
+				<li>
+					<a href="/cbc-circle-manager/">CBC Circle Manager</a> - a browser-only app for
+					Christmas Bird Count compilers: roster, area assignments, and results.
+				</li>
+				<li>
+					<a href="/cbc-circle-manager/circle-scout/">Circle Scout</a> - a phone app for field
+					counters that shows their count area and where they are in it.
+				</li>
+				<li>
+					<a href="https://github.com/lizmstanley/cbc_utils">cbc_utils</a> - scripts for eBird
+					maps, results data entry, and count sheets.
+				</li>
+			</ul>
+
+			{
+				latestPosts.length > 0 && (
+					<>
+						<h2>Latest posts</h2>
+						<ul>
+							{latestPosts.map((post) => (
+								<li>
+									<a href={`/blog/${post.id}/`}>{post.data.title}</a> -{' '}
+									<FormattedDate date={post.data.pubDate} />
+								</li>
+							))}
+						</ul>
+					</>
+				)
+			}
+		</main>
+		<Footer />
+	</body>
+</html>

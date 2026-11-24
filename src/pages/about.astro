@@ -1,0 +1,30 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { GITHUB_URL, SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`About | ${SITE_TITLE}`} description="About Liz Stanley" />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>About</h1>
+			<p>
+				I've been a software engineer for over 25 years. I use AI as an accelerator for my
+				experience, under my control, to write production quality applications.
+			</p>
+			<p>
+				I've been the compiler for the
+				<a href="https://www.bloomingtoncbc.org/">Bloomington, MN Christmas Bird Count</a> since
+				2020, and a lot of what I build outside of work is for it.
+			</p>
+			<p>My code is on <a href={GITHUB_URL}>GitHub</a>.</p>
+		</main>
+		<Footer />
+	</body>
+</html>
