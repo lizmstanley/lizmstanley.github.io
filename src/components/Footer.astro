@@ -1,33 +1,48 @@
 ---
-import GitHubLink from './GitHubLink.astro';
+import CircleMark from './CircleMark.astro';
+import { GITHUB_URL } from '../consts';
 
-const today = new Date();
+const year = new Date().getFullYear();
 ---
 
 <footer>
-	&copy; {today.getFullYear()} Liz Stanley. All rights reserved.
-	<div class="social-links">
-		<GitHubLink />
+	<div class="inner">
+		<span class="mark"><CircleMark size={22} /></span>
+		<span>&copy; {year} Liz Stanley</span>
+		<span class="links">
+			<a href="/rss.xml">RSS</a>
+			<a href={GITHUB_URL}>GitHub</a>
+		</span>
 	</div>
 </footer>
+
 <style>
 	footer {
-		padding: 2em 1em 6em 1em;
-		background: linear-gradient(var(--gray-gradient)) no-repeat;
-		color: rgb(var(--gray));
-		text-align: center;
+		border-top: 1px solid var(--rule);
+		color: var(--ink-faint);
+		font-size: 0.9rem;
 	}
-	.social-links {
+	.inner {
 		display: flex;
-		justify-content: center;
-		gap: 1em;
-		margin-top: 1em;
+		align-items: center;
+		gap: 0.75rem;
+		max-width: var(--page);
+		margin: 0 auto;
+		padding: 2rem 1.5rem 3rem;
 	}
-	.social-links a {
-		text-decoration: none;
-		color: rgb(var(--gray));
+	.mark {
+		display: flex;
+		color: var(--spruce);
 	}
-	.social-links a:hover {
-		color: rgb(var(--gray-dark));
+	.links {
+		display: flex;
+		gap: 1.25rem;
+		margin-left: auto;
+	}
+	.links a {
+		color: var(--ink-faint);
+	}
+	.links a:hover {
+		color: var(--cardinal);
 	}
 </style>

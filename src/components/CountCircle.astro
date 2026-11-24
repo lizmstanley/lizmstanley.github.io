@@ -1,0 +1,91 @@
+---
+const hotspots = [
+	[118, 92],
+	[205, 78],
+	[248, 150],
+	[96, 196],
+	[160, 248],
+	[226, 222],
+	[140, 140],
+] as const;
+---
+
+<svg class="count-circle" viewBox="0 0 320 320" role="img" aria-labelledby="count-circle-title">
+	<title id="count-circle-title">
+		A count circle divided into areas, with eBird hotspots and a live location dot
+	</title>
+	<defs>
+		<clipPath id="count-circle-clip">
+			<circle cx="160" cy="160" r="150"></circle>
+		</clipPath>
+	</defs>
+	<circle class="ring" cx="160" cy="160" r="150"></circle>
+	<g class="areas" clip-path="url(#count-circle-clip)">
+		<path d="M160 10 L150 92 L178 150 L310 168"></path>
+		<path d="M150 92 L42 70"></path>
+		<path d="M178 150 L120 214 L28 238"></path>
+		<path d="M120 214 L150 310"></path>
+		<path d="M178 150 L236 108 L282 70"></path>
+		<path d="M236 108 L210 22"></path>
+		<path d="M120 214 L214 260 L260 284"></path>
+	</g>
+	<g class="hotspots">
+		{hotspots.map(([cx, cy]) => <circle cx={cx} cy={cy} r="4"></circle>)}
+	</g>
+	<g class="you">
+		<circle class="pulse" cx="196" cy="182" r="10"></circle>
+		<circle class="ring-accuracy" cx="196" cy="182" r="22"></circle>
+		<circle class="dot" cx="196" cy="182" r="8"></circle>
+	</g>
+</svg>
+
+<style>
+	.count-circle {
+		width: 100%;
+		height: auto;
+		overflow: visible;
+	}
+	.ring {
+		fill: var(--paper-raised);
+		stroke: var(--spruce);
+		stroke-width: 2;
+		stroke-dasharray: 6 6;
+	}
+	.areas path {
+		fill: none;
+		stroke: var(--spruce);
+		stroke-width: 1.5;
+		stroke-linejoin: round;
+		opacity: 0.45;
+	}
+	.hotspots circle {
+		fill: var(--spruce);
+		opacity: 0.7;
+	}
+	.ring-accuracy {
+		fill: var(--cardinal);
+		opacity: 0.12;
+	}
+	.dot {
+		fill: var(--cardinal);
+		stroke: var(--paper-raised);
+		stroke-width: 3;
+	}
+	.pulse {
+		fill: none;
+		stroke: var(--cardinal);
+		stroke-width: 2;
+		transform-origin: 196px 182px;
+		animation: pulse 2.4s ease-out infinite;
+	}
+	@keyframes pulse {
+		from {
+			transform: scale(1);
+			opacity: 0.8;
+		}
+		to {
+			transform: scale(3.2);
+			opacity: 0;
+		}
+	}
+</style>

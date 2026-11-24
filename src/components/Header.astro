@@ -1,62 +1,78 @@
 ---
-import { SITE_TITLE } from '../consts';
+import CircleMark from './CircleMark.astro';
 import GitHubLink from './GitHubLink.astro';
 import HeaderLink from './HeaderLink.astro';
+import { SITE_TITLE } from '../consts';
 ---
 
 <header>
 	<nav>
-		<h2>
-			<a href="/">{SITE_TITLE}</a>
-		</h2>
-		<div class="internal-links">
-			<HeaderLink href="/">Home</HeaderLink>
+		<a class="brand" href="/">
+			<CircleMark />
+			<span>{SITE_TITLE}</span>
+		</a>
+		<div class="links">
 			<HeaderLink href="/blog">Blog</HeaderLink>
 			<HeaderLink href="/about">About</HeaderLink>
-		</div>
-		<div class="social-links">
 			<GitHubLink />
 		</div>
 	</nav>
 </header>
+
 <style>
 	header {
-		margin: 0;
-		padding: 0 1em;
-		background: white;
-		box-shadow: 0 2px 8px rgba(var(--black), 5%);
-	}
-	h2 {
-		margin: 0;
-		font-size: 1em;
-	}
-
-	h2 a,
-	h2 a.active {
-		text-decoration: none;
+		position: sticky;
+		top: 0;
+		z-index: 10;
+		background: color-mix(in srgb, var(--paper) 88%, transparent);
+		backdrop-filter: blur(8px);
+		border-bottom: 1px solid var(--rule);
 	}
 	nav {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		max-width: var(--page);
+		margin: 0 auto;
+		padding: 0.75rem 1.5rem;
 	}
-	nav a {
-		padding: 1em 0.5em;
-		color: var(--black);
-		border-bottom: 4px solid transparent;
-		text-decoration: none;
-	}
-	nav a.active {
-		text-decoration: none;
-		border-bottom-color: var(--accent);
-	}
-	.social-links,
-	.social-links a {
+	.brand {
 		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+		font-family: var(--font-fraunces);
+		font-size: 1.25rem;
+		font-weight: 600;
+		color: var(--ink);
+		text-decoration: none;
+	}
+	.brand:hover {
+		color: var(--ink);
+	}
+	.links {
+		display: flex;
+		align-items: center;
+		gap: 1.5rem;
+	}
+	.links :global(a) {
+		display: flex;
+		color: var(--ink-soft);
+		text-decoration: none;
+	}
+	.links :global(a:hover),
+	.links :global(a.active) {
+		color: var(--cardinal);
+	}
+	.links :global(svg) {
+		width: 24px;
+		height: 24px;
 	}
 	@media (max-width: 720px) {
-		.social-links {
-			display: none;
+		nav {
+			padding: 0.75rem 1rem;
+		}
+		.links {
+			gap: 1rem;
 		}
 	}
 </style>

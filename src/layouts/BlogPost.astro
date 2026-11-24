@@ -11,74 +11,77 @@ type Props = CollectionEntry<'blog'>['data'];
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 ---
 
+<!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={title} description={description} />
-		<style>
-			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
-			}
-			.hero-image {
-				width: 100%;
-			}
-			.hero-image img {
-				display: block;
-				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
-			}
-			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
-			}
-			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center;
-				line-height: 1;
-			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
-			}
-			.date {
-				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
-			}
-			.last-updated-on {
-				font-style: italic;
-			}
-		</style>
+		<BaseHead title={title} description={description} image={heroImage} />
 	</head>
-
 	<body>
 		<Header />
 		<main>
 			<article>
-				<div class="hero-image">
-					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
-				</div>
+				<header class="post-header">
+					<p class="meta">
+						<FormattedDate date={pubDate} />
+						{
+							updatedDate && (
+								<span>
+									&middot; Updated <FormattedDate date={updatedDate} />
+								</span>
+							)
+						}
+					</p>
+					<h1>{title}</h1>
+					<p class="description">{description}</p>
+				</header>
+				{heroImage && <Image class="hero" width={1020} height={510} src={heroImage} alt="" />}
 				<div class="prose">
-					<div class="title">
-						<div class="date">
-							<FormattedDate date={pubDate} />
-							{updatedDate && (
-								<div class="last-updated-on">
-									Last updated on <FormattedDate date={updatedDate} />
-								</div>
-							)}
-						</div>
-						<h1>{title}</h1>
-						<hr />
-					</div>
 					<slot />
 				</div>
+				<p class="back"><a href="/blog">&larr; All posts</a></p>
 			</article>
 		</main>
 		<Footer />
 	</body>
 </html>
+
+<style>
+	article {
+		max-width: var(--measure);
+		margin: 0 auto;
+	}
+	.post-header {
+		margin-bottom: 2.5rem;
+		padding-bottom: 2rem;
+		border-bottom: 1px solid var(--rule);
+	}
+	.meta {
+		margin-bottom: 1rem;
+		font-size: 0.85rem;
+		color: var(--ink-faint);
+	}
+	.description {
+		margin: 0;
+		font-size: 1.2rem;
+		color: var(--ink-soft);
+	}
+	.hero {
+		margin-bottom: 2.5rem;
+		border-radius: var(--radius);
+	}
+	.prose :global(h2) {
+		margin-top: 2.2em;
+		font-size: 1.7rem;
+	}
+	.prose :global(h3) {
+		margin-top: 1.8em;
+	}
+	.prose :global(li) {
+		margin-bottom: 0.35em;
+	}
+	.back {
+		margin-top: 3rem;
+		padding-top: 1.5rem;
+		border-top: 1px solid var(--rule);
+	}
+</style>
