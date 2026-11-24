@@ -2,7 +2,15 @@
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
+import PageHero from '../components/PageHero.astro';
 import { GITHUB_URL, SITE_TITLE } from '../consts';
+
+const facts = [
+	{ value: '25+', label: 'years as a software engineer' },
+	{ value: '2020', label: 'first year as compiler of the Bloomington, MN CBC' },
+	{ value: '1966', label: 'first year of the Bloomington count' },
+	{ value: '24', label: 'count areas in the circle' },
+] as const;
 ---
 
 <!doctype html>
@@ -12,26 +20,80 @@ import { GITHUB_URL, SITE_TITLE } from '../consts';
 	</head>
 	<body>
 		<Header />
+		<PageHero eyebrow="About" title="Hi, I'm Liz." subtitle="Software engineer, birder, and Christmas Bird Count compiler." />
 		<main>
-			<p class="eyebrow">About</p>
-			<h1>Hi, I'm Liz.</h1>
-			<p>
-				I've been a software engineer for over 25 years. I use AI as an accelerator for my
-				experience, under my control, to write production quality applications.
-			</p>
-			<p>
-				I've been the compiler for the
-				<a href="https://www.bloomingtoncbc.org/">Bloomington, MN Christmas Bird Count</a> since
-				2020, and a lot of what I build outside of work is for it.
-			</p>
-			<p>My code is on <a href={GITHUB_URL}>GitHub</a>.</p>
+			<div class="layout">
+				<div class="text">
+					<p>
+						I've been a software engineer for over 25 years. I use AI as an accelerator for my
+						experience, under my control, to write production quality applications.
+					</p>
+					<p>
+						I've been the compiler for the{' '}
+						<a href="https://www.bloomingtoncbc.org/">Bloomington, MN Christmas Bird Count</a> since
+						2020, and a lot of what I build outside of work is for it.
+					</p>
+					<p>My code is on <a href={GITHUB_URL}>GitHub</a>.</p>
+				</div>
+				<aside>
+					<p class="eyebrow">At a glance</p>
+					<dl>
+						{
+							facts.map((fact) => (
+								<div>
+									<dt>{fact.value}</dt>
+									<dd>{fact.label}</dd>
+								</div>
+							))
+						}
+					</dl>
+				</aside>
+			</div>
 		</main>
 		<Footer />
 	</body>
 </html>
 
 <style>
-	main {
-		max-width: var(--measure);
+	.layout {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) 20rem;
+		align-items: start;
+		gap: 4rem;
+	}
+	.text {
+		font-size: 1.1rem;
+	}
+	.text p:first-child {
+		font-size: 1.25rem;
+	}
+	aside {
+		padding: 1.75rem;
+		background: var(--paper-raised);
+		border: 1px solid var(--rule);
+		border-radius: var(--radius);
+	}
+	dl {
+		display: grid;
+		gap: 1.25rem;
+		margin: 0;
+	}
+	dt {
+		font-family: var(--font-fraunces);
+		font-size: 2.2rem;
+		font-weight: 600;
+		line-height: 1;
+		color: var(--spruce);
+	}
+	dd {
+		margin: 0.3rem 0 0;
+		font-size: 0.9rem;
+		color: var(--ink-soft);
+	}
+	@media (max-width: 820px) {
+		.layout {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
 	}
 </style>

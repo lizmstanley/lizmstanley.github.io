@@ -41,7 +41,7 @@
 
 body {
 	margin: 0;
-	font-family: var(--font-atkinson);
+	font-family: var(--font-body);
 	font-size: 19px;
 	line-height: 1.65;
 	color: var(--ink);

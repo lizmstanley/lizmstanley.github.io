@@ -2,6 +2,7 @@
 import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
+import PageHero from '../../components/PageHero.astro';
 import PostList from '../../components/PostList.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 import { getPosts } from '../../posts';
@@ -16,9 +17,12 @@ const posts = await getPosts();
 	</head>
 	<body>
 		<Header />
+		<PageHero
+			eyebrow="Blog"
+			title="Notes from the field and the editor"
+			subtitle="Building software, running a bird count, and where the two meet."
+		/>
 		<main>
-			<p class="eyebrow">Blog</p>
-			<h1>Notes from the field and the editor</h1>
 			{posts.length > 0 ? <PostList posts={posts} /> : <p class="empty">First post coming soon.</p>}
 		</main>
 		<Footer />
@@ -27,10 +31,7 @@ const posts = await getPosts();
 
 <style>
 	main {
-		max-width: 820px;
-	}
-	h1 {
-		margin-bottom: 2rem;
+		max-width: 860px;
 	}
 	.empty {
 		color: var(--ink-faint);
