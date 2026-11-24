@@ -3,10 +3,12 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import PageHero from '../components/PageHero.astro';
+import { Image } from 'astro:assets';
 import { GITHUB_URL, SITE_TITLE } from '../consts';
+import portrait from '../assets/liz-and-cat.jpg';
 
 const facts = [
-	{ value: '25+', label: 'years as a software engineer' },
+	{ value: '15+', label: 'years as a software engineer' },
 	{ value: '2020', label: 'first year as compiler of the Bloomington, MN CBC' },
 	{ value: '1966', label: 'first year of the Bloomington count' },
 	{ value: '24', label: 'count areas in the circle' },
@@ -25,7 +27,7 @@ const facts = [
 			<div class="layout">
 				<div class="text">
 					<p>
-						I've been a software engineer for over 25 years. I use AI as an accelerator for my
+						I've been a software engineer for over 15 years. I use AI as an accelerator for my
 						experience, under my control, to write production quality applications.
 					</p>
 					<p>
@@ -33,9 +35,10 @@ const facts = [
 						<a href="https://www.bloomingtoncbc.org/">Bloomington, MN Christmas Bird Count</a> since
 						2020, and a lot of what I build outside of work is for it.
 					</p>
-					<p>My code is on <a href={GITHUB_URL}>GitHub</a>.</p>
+					<p>My code is on <a href={GITHUB_URL}>GitHub</a>, and my <a href="/resume">resume</a> is here.</p>
 				</div>
 				<aside>
+					<Image src={portrait} alt="Liz Stanley with her black and white cat" width={640} height={640} class="portrait" />
 					<p class="eyebrow">At a glance</p>
 					<dl>
 						{
@@ -72,6 +75,12 @@ const facts = [
 		background: var(--paper-raised);
 		border: 1px solid var(--rule);
 		border-radius: var(--radius);
+	}
+	.portrait {
+		width: 100%;
+		height: auto;
+		margin-bottom: 1.5rem;
+		border-radius: 50%;
 	}
 	dl {
 		display: grid;

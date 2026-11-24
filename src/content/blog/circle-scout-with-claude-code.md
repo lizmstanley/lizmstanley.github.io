@@ -36,7 +36,7 @@ That last one paid off. The first thing built was a throwaway test page, and I r
 
 ## How I work with Claude Code
 
-I've been a software engineer for over 25 years, and I've long recognized that the job is problem solving and analysis. Typing was never the hard part. My definition of vibe coding is using AI blindly: accepting its output without any control or challenge. I use AI as an accelerator for my experience, under my control, to write production quality applications. It doesn't replace the engineering in software engineering. It's a force multiplier.
+I've been a software engineer for over 15 years, and I've long recognized that the job is problem solving and analysis. Typing was never the hard part. My definition of vibe coding is using AI blindly: accepting its output without any control or challenge. I use AI as an accelerator for my experience, under my control, to write production quality applications. It doesn't replace the engineering in software engineering. It's a force multiplier.
 
 Claude Code writes most of the code in this repo. The way I use it looks a lot like how I'd run a team.
 

@@ -1,0 +1,330 @@
+---
+import { Image } from 'astro:assets';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import PageHero from '../components/PageHero.astro';
+import { GITHUB_URL, LINKEDIN_URL, SITE_TITLE } from '../consts';
+import portrait from '../assets/liz-and-cat.jpg';
+
+const aiPractice = [
+	'I own the plan. Each project starts as a written plan with the outcome, principles, scope, milestones, and the assumptions that still need proof. It gets broken into issues that name the actual files, the design, the rejected alternatives, and the constraints.',
+	'Each issue runs through a pipeline of skills I built: a spec checked against the code, implementation, verification, then several review passes before a PR opens. I review and merge.',
+	'I check AI output the way I would check a teammate\'s code: against the schema, the transaction boundaries, the failure modes, and the license terms of anything it pulls in.',
+	'At work I turned that discipline into policy, with branch protections, AI-change detection, approval requirements, and bypass visibility for high-risk AI-assisted changes.',
+] as const;
+
+const jobs = [
+	{
+		title: 'Senior Backend Engineer',
+		company: 'House Rx',
+		dates: '2026 to present',
+		points: [
+			'Lead the backend team. Ran a compliance, reliability, and scalability audit of the core product\'s database layer, tracing incidents to root causes across infrastructure, schema, and data access code.',
+			'Built a decoupled PostgreSQL (RDS) access layer for multi-tenancy, PHI isolation, and transaction management.',
+			'Set up database migration governance: DDL/DML separation, transactional safety, and GitHub Actions pipelines, so every schema change is reviewed and auditable.',
+			'Put guardrails on AI-assisted development: branch protections, AI-change detection, approval requirements, and bypass visibility.',
+		],
+	},
+	{
+		title: 'Senior Software Engineer',
+		company: 'Vizion API',
+		dates: '2021 to 2026',
+		points: [
+			'Designed and built a full-text and geospatial search API for ocean freight container tracking (Python/FastAPI, PostgreSQL, OpenSearch, Redis, MongoDB, Neo4j) on AWS ECS/Fargate. 500k requests per day at under 100 ms, owned end to end.',
+			'Built async ingestion scrapers (TypeScript, Node.js, Puppeteer, AWS serverless) for carrier, terminal, and port data.',
+			'Provisioned AWS infrastructure with Terraform and CI/CD with GitHub Actions. Wrote the unit and API regression suites (Jest, Pytest, Postman/Newman).',
+		],
+	},
+	{
+		title: 'Senior API Developer',
+		company: 'Aeris Weather',
+		dates: '2017 to 2020',
+		points: [
+			'Led the redesign of legacy PHP ingest scripts into serverless microservices (AWS Lambda, TypeScript, Node.js, Redis, Elasticsearch, MongoDB), owning the architecture through delivery.',
+			'Built APIs that ingest and bulk-write millions of weather observations per day, using Node.js transform streams for throughput. Redesigned MongoDB schemas for performance at scale.',
+		],
+	},
+	{
+		title: 'Lead Software Engineer',
+		company: 'TeachForward',
+		dates: '2020',
+		points: [
+			'Led the team building the company\'s next flagship product. Set coding standards and ran code reviews for internal and offshore teams.',
+		],
+	},
+] as const;
+
+const earlierClients = ['Thomson Reuters', 'Room & Board', 'Lockheed Martin'] as const;
+
+const skills = [
+	{ group: 'Languages', items: 'TypeScript, Python, Java, Kotlin, Groovy, SQL' },
+	{ group: 'Data', items: 'PostgreSQL, MongoDB, OpenSearch/Elasticsearch, Redis, Neo4j, Oracle' },
+	{ group: 'Cloud and infrastructure', items: 'AWS (ECS/Fargate, Lambda, RDS, SQS, SNS, S3), Terraform, Docker, Kubernetes, GitHub Actions' },
+	{ group: 'Frameworks and testing', items: 'Node.js, FastAPI, NestJS, Express, Spring Boot, Jest, Vitest, Pytest, JUnit' },
+	{ group: 'AI', items: 'Claude Code, GitHub Copilot, custom agent skills for spec, implementation, and review' },
+] as const;
+
+const education = [
+	{ degree: 'Master of Arts, Management Information Systems (minor in Computer Science)', school: 'University of Iowa' },
+	{ degree: 'Master of Music, Music History, Literature and Theory', school: 'University of Georgia' },
+	{ degree: 'Bachelor of Music, Church Music/Organ, magna cum laude with honors', school: 'University of Georgia' },
+] as const;
+
+const community = [
+	{ role: 'Compiler, Bloomington, MN Christmas Bird Count', dates: '2020 to present', detail: '60+ volunteers across 24 areas and 175 square miles.' },
+	{ role: 'Animal care volunteer, Richardson Nature Center', dates: '2009 to present', detail: 'Education birds of prey: American kestrel, broad-winged hawk, and great horned owl.' },
+	{ role: 'Minnesota Master Naturalist', dates: '2009 to present', detail: 'Conservation projects, talks, and birding and native plant tours.' },
+	{ role: 'Bass trombone, Northern Winds Concert Band', dates: '2024 to present', detail: 'Free concerts at nonprofit venues around the Twin Cities.' },
+] as const;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Resume | ${SITE_TITLE}`} description="Liz Stanley, senior backend engineer: resume" />
+	</head>
+	<body>
+		<Header />
+		<PageHero
+			eyebrow="Resume"
+			title="Senior Backend Engineer"
+			subtitle="I design and build backend systems and databases, and I use AI as a force multiplier for my engineering judgment."
+		/>
+		<main>
+			<div class="layout">
+				<div class="content">
+					<section>
+						<h2>Summary</h2>
+						<p>
+							I'm a backend engineer focused on databases and data access: schema design, migrations,
+							multi-tenancy, transactions, and the code that talks to them. I've spent most of my
+							career in startups and as a consultant, owning systems end to end from data model to
+							infrastructure to CI/CD.
+						</p>
+						<p>
+							Software engineering has always been problem solving and analysis. Typing was never the
+							hard part. Years of building, debugging, and inheriting real systems are what let me use AI
+							as a force multiplier: I know what good looks like, so I can direct it, check it, and
+							catch it when it's wrong.
+						</p>
+					</section>
+
+					<section>
+						<h2>Experience</h2>
+						{
+							jobs.map((job) => (
+								<article class="job">
+									<div class="job-head">
+										<h3>{job.title}</h3>
+										<p class="meta">
+											{job.company} · {job.dates}
+										</p>
+									</div>
+									<ul>
+										{job.points.map((point) => (
+											<li>{point}</li>
+										))}
+									</ul>
+								</article>
+							))
+						}
+						<article class="job">
+							<div class="job-head">
+								<h3>Senior Software Engineer, consulting</h3>
+								<p class="meta">Independent · through 2021</p>
+							</div>
+							<p>
+								Java enterprise applications and database development for clients including{' '}
+								{earlierClients.join(', ')}: REST APIs, e-commerce, J2EE infrastructure, Oracle data
+								models, and legacy rewrites and cloud migrations. Mentored developers and set standards on
+								most of them. Held a Secret security clearance at Lockheed Martin. These are the years I
+								learned what breaks in production and why.
+							</p>
+						</article>
+					</section>
+
+					<section>
+						<h2>How I work with AI</h2>
+						<ul>
+							{aiPractice.map((point) => <li>{point}</li>)}
+						</ul>
+					</section>
+
+					<section>
+						<h2>Skills</h2>
+						<dl class="skills">
+							{
+								skills.map((skill) => (
+									<div>
+										<dt>{skill.group}</dt>
+										<dd>{skill.items}</dd>
+									</div>
+								))
+							}
+						</dl>
+					</section>
+
+					<section>
+						<h2>Education</h2>
+						<ul class="plain">
+							{
+								education.map((entry) => (
+									<li>
+										<strong>{entry.degree}</strong>
+										<span class="meta">{entry.school}</span>
+									</li>
+								))
+							}
+						</ul>
+					</section>
+
+					<section>
+						<h2>Community</h2>
+						<ul class="plain">
+							{
+								community.map((entry) => (
+									<li>
+										<strong>{entry.role}</strong>
+										<span class="meta">{entry.dates}</span>
+										<span>{entry.detail}</span>
+									</li>
+								))
+							}
+						</ul>
+					</section>
+				</div>
+
+				<aside>
+					<Image src={portrait} alt="Liz Stanley with her black and white cat" width={640} height={640} class="portrait" loading="eager" />
+					<p class="name">Liz Stanley</p>
+					<p class="meta">Bloomington, MN · Remote</p>
+					<ul class="plain links">
+						<li><a href={LINKEDIN_URL}>LinkedIn</a></li>
+						<li><a href={GITHUB_URL}>GitHub</a></li>
+					</ul>
+				</aside>
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.layout {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) 18rem;
+		align-items: start;
+		gap: 4rem;
+	}
+	section + section {
+		margin-top: 3rem;
+	}
+	.job + .job {
+		margin-top: 2rem;
+	}
+	.job-head h3 {
+		margin-bottom: 0.15em;
+	}
+	.meta {
+		margin: 0;
+		font-size: 0.95rem;
+		color: var(--ink-soft);
+	}
+	li + li {
+		margin-top: 0.5rem;
+	}
+	.plain {
+		padding: 0;
+		list-style: none;
+	}
+	.plain li {
+		display: grid;
+		gap: 0.15rem;
+	}
+	.skills {
+		display: grid;
+		gap: 1rem;
+		margin: 0;
+	}
+	.skills dt {
+		font-weight: 600;
+	}
+	.skills dd {
+		margin: 0.15rem 0 0;
+		color: var(--ink-soft);
+	}
+	aside {
+		position: sticky;
+		top: 5rem;
+		padding: 1.75rem;
+		background: var(--paper-raised);
+		border: 1px solid var(--rule);
+		border-radius: var(--radius);
+	}
+	.portrait {
+		width: 100%;
+		height: auto;
+		border-radius: 50%;
+		margin-bottom: 1rem;
+	}
+	.name {
+		margin: 0;
+		font-family: var(--font-fraunces);
+		font-size: 1.5rem;
+		font-weight: 600;
+	}
+	.links {
+		margin: 1rem 0 0;
+	}
+	@media (max-width: 820px) {
+		.layout {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+		aside {
+			position: static;
+			order: -1;
+			display: grid;
+			grid-template-columns: 6rem 1fr;
+			column-gap: 1rem;
+			align-items: center;
+		}
+		.portrait {
+			grid-row: span 3;
+			margin: 0;
+		}
+		.links {
+			grid-column: 2;
+			display: flex;
+			gap: 1rem;
+			margin-top: 0.25rem;
+		}
+		.plain.links li + li {
+			margin-top: 0;
+		}
+	}
+	@media print {
+		:global(header),
+		:global(footer),
+		:global(.page-hero .watermark) {
+			display: none;
+		}
+		.layout {
+			grid-template-columns: 1fr;
+			gap: 1rem;
+		}
+		aside {
+			position: static;
+			order: -1;
+			border: 0;
+			padding: 0;
+		}
+		.portrait {
+			display: none;
+		}
+		section + section {
+			margin-top: 1.5rem;
+		}
+	}
+</style>
