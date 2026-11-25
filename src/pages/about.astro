@@ -6,6 +6,11 @@ import PageHero from '../components/PageHero.astro';
 import { Image } from 'astro:assets';
 import { GITHUB_URL, SITE_TITLE } from '../consts';
 import portrait from '../assets/liz-and-cat.jpg';
+import birding from '../assets/about/birding.jpg';
+import kestrel from '../assets/about/kestrel.jpg';
+import trombone from '../assets/about/trombone.jpg';
+import jerk from '../assets/about/jerk.jpg';
+import squat from '../assets/about/squat.jpg';
 
 const facts = [
 	{ value: '15+', label: 'years as a software engineer' },
@@ -28,50 +33,86 @@ const facts = [
 			<div class="layout">
 				<div class="text">
 					<p>
-						I've been a software engineer for over 15 years. I use AI as an accelerator for my
-						experience, under my control, to write production quality applications.
+						I've been a software engineer for over 15 years. These days I use AI as an accelerator for
+						that experience, with me in control, to write production quality applications.
+					</p>
+					<figure class="photo right">
+						<Image src={birding} alt="Liz in a Christmas Bird Count cap with binoculars on a wooded trail" widths={[400, 800]} sizes="(max-width: 820px) 100vw, 22rem" />
+						<figcaption>Birding in Panama.</figcaption>
+					</figure>
+					<p>
+						Outside of work, most of what I build is for birds in one way or another. Since 2020 I've
+						been the compiler for the{' '}
+						<a href="https://www.bloomingtoncbc.org/">Bloomington, MN Christmas Bird Count</a>, which has
+						run every year since 1966. Our circle has 24 count areas, so there's a lot to keep track of,
+						and that's where the software comes in.
 					</p>
 					<p>
-						I've been the compiler for the{' '}
-						<a href="https://www.bloomingtoncbc.org/">Bloomington, MN Christmas Bird Count</a> since
-						2020, and a lot of what I build outside of work is for it.
+						It started in my own backyard. In 2008 I wanted to attract more birds, and the way to do
+						that is better habitat. Most land birds feed their young insects, and native plants are what
+						bring in the insects. So I started turning my half-acre suburban lot in Bloomington from turf
+						grass into native plants. Over 90 species of birds have shown up since. Along the way I've
+						given{' '}
+						<a href="https://docs.google.com/presentation/d/1uJBmMElKlyCAs47VLP4l03S_uChEig2UvJg985YbuW8/edit?usp=sharing"
+							>my talk on gardening for wildlife</a
+						> to a lot of groups, like Wild Ones, and in October 2021
+						the City of Bloomington named me one of its Earth Action Heroes for the work.
+					</p>
+					<figure class="photo left">
+						<Image src={kestrel} alt="Liz holding an American Kestrel on a gloved hand at Richardson Nature Center" widths={[400, 800]} sizes="(max-width: 820px) 100vw, 22rem" />
+						<figcaption>Volunteering with an American Kestrel at Richardson Nature Center.</figcaption>
+					</figure>
+					<p>
+						I'm also a Minnesota Master Naturalist. Since 2009 I've volunteered with the raptors at
+						Richardson Nature Center, and I still do. I also volunteered with{' '}
+						<a href="https://raptor.umn.edu/">The Raptor Center</a> for five years, and I've worked on a
+						number of citizen science projects.
 					</p>
 					<p>
-						I'm a Minnesota Master Naturalist. I volunteer with{' '}
-						<a href="https://raptor.umn.edu/">The Raptor Center</a>, and I've volunteered at
-						Richardson Nature Center and on citizen science projects.
-					</p>
-					<p>
-						In 2008 I started turning my half-acre suburban lot in Bloomington into native plant
-						habitat to bring in more birds. Over 90 species of birds have visited it since. I've given
-						many talks on gardening for wildlife, for groups like Wild Ones. In October 2021 the City
-						of Bloomington named me one of its Earth Action Heroes for turning turf grass into native
-						wildlife habitat.
-					</p>
-					<p>
-						I've had a camera on my bird feeders since 2008. Today it's the{' '}
+						I've had a camera on my bird feeders since 2008. The first one uploaded a still image every 30
+						seconds. Today it's the{' '}
 						<a href="https://feedercam.overlookcircle.org">Overlook Circle Feedercam</a>, a live stream
-						that KSTP's Minnesota Live often shows.{' '}
+						that KSTP's Minnesota Live shows often, and{' '}
 						<a href="https://kstp.com/special-coverage/minnesota-live/the-woman-behind-the-bloomington-bird-feeder-livestream/"
 							>KSTP interviewed me</a
-						> about it.
+						> about it. I'm also a weather nerd, and I've run a Davis Vantage Pro2 weather station at
+						home since 2007. Of course the two had to meet: my{' '}
+						<a href="https://github.com/lizmstanley/webcam-weather">webcam-weather</a> project puts the
+						live weather readings right on the video.
 					</p>
 					<p>
-						I'm a weather nerd. I've run a Davis Vantage Pro2 weather station at home since 2007.
-						My <a href="https://github.com/lizmstanley/webcam-weather">webcam-weather</a> project puts
-						its live readings on the feedercam stream.
-					</p>
-					<p>
-						I'm an avid photographer. My bird photos are of wild birds, and you can see them on{' '}
+						I'm an avid photographer too. My bird photos are all of wild birds, and you can find them on{' '}
 						<a href="https://pbase.com/gymell">PBase</a> and{' '}
-						<a href="https://www.instagram.com/lizmstanley/">Instagram</a>. My sightings are on{' '}
+						<a href="https://www.instagram.com/lizmstanley/">Instagram</a>. What I see goes on{' '}
 						<a href="https://ebird.org/profile/MTk5Mzk1">eBird</a>.
 					</p>
+					<figure class="photo right tall">
+						<Image src={trombone} alt="Liz holding her bass trombone" widths={[400, 800]} sizes="(max-width: 820px) 100vw, 22rem" />
+						<figcaption>With my bass trombone.</figcaption>
+					</figure>
 					<p>
-						I have two music degrees. I sang with the Gregorian Singers and played trombone with the
-						Bloomington Medalist Concert Band. Now I play with the Northern Winds Concert Band.
+						Not everything is birds. I have two music degrees. I sang with{' '}
+						<a href="https://www.thegregoriansingers.org/">The Gregorian Singers</a> and played trombone
+						with the <a href="https://www.medalistband.com/">Medalist Concert Band</a> in Bloomington, and
+						these days I play bass trombone with the{' '}
+						<a href="https://northernwindsconcertband.org/">Northern Winds Concert Band</a>.
 					</p>
-					<p>I'm a weightlifter with Team Spartacus, and I have a background in powerlifting.</p>
+					<p>
+						I used to compete in weightlifting and powerlifting. I lifted with Team Spartacus and won a
+						bronze medal at the 2013 Pan American Masters Championships in Chicago. On the powerlifting
+						side, I set a Minnesota masters bench press record at the 2014 USAPL Minnesota Senior State
+						Open (<a href="https://www.openpowerlifting.org/u/lizstanley">results</a>).
+					</p>
+					<div class="photo-pair">
+						<figure>
+							<Image src={jerk} alt="Liz holding a barbell overhead in a split jerk" widths={[400, 570]} sizes="(max-width: 820px) 50vw, 20rem" />
+							<figcaption>Split jerk at a Team Spartacus meet.</figcaption>
+						</figure>
+						<figure>
+							<Image src={squat} alt="Liz squatting a loaded barbell with spotters on each side" widths={[400, 800]} sizes="(max-width: 820px) 50vw, 20rem" />
+							<figcaption>Squatting at a powerlifting meet.</figcaption>
+						</figure>
+					</div>
 					<p>My code is on <a href={GITHUB_URL}>GitHub</a>, and my <a href="/resume">resume</a> is here.</p>
 				</div>
 				<aside>
@@ -102,7 +143,51 @@ const facts = [
 		gap: 4rem;
 	}
 	.text {
+		display: flow-root;
 		font-size: 1.1rem;
+	}
+	.photo {
+		width: 22rem;
+		max-width: 50%;
+		margin: 0.4rem 0 1.25rem;
+	}
+	.photo.tall {
+		width: 15rem;
+	}
+	.photo.right {
+		float: right;
+		margin-left: 2rem;
+	}
+	.photo.left {
+		float: left;
+		margin-right: 2rem;
+	}
+	.photo img {
+		width: 100%;
+		height: auto;
+		border-radius: var(--radius);
+	}
+	.photo-pair {
+		clear: both;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1.25rem;
+		margin: 0 0 1.25rem;
+	}
+	.photo-pair figure {
+		margin: 0;
+	}
+	.photo-pair img {
+		width: 100%;
+		height: 14rem;
+		object-fit: cover;
+		border-radius: var(--radius);
+	}
+	.photo figcaption,
+	.photo-pair figcaption {
+		margin-top: 0.4rem;
+		font-size: 0.85rem;
+		color: var(--ink-soft);
 	}
 	.text p:first-child {
 		font-size: 1.25rem;
@@ -140,6 +225,16 @@ const facts = [
 		.layout {
 			grid-template-columns: 1fr;
 			gap: 2rem;
+		}
+		.photo.right,
+		.photo.left {
+			float: none;
+			width: 100%;
+			max-width: 100%;
+			margin: 0 0 1.25rem;
+		}
+		.photo-pair img {
+			height: 10rem;
 		}
 	}
 </style>
