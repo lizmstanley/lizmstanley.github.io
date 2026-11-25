@@ -10,7 +10,6 @@ import birding from '../assets/about/birding.jpg';
 import kestrel from '../assets/about/kestrel.jpg';
 import trombone from '../assets/about/trombone.jpg';
 import jerk from '../assets/about/jerk.jpg';
-import squat from '../assets/about/squat.jpg';
 
 const facts = [
 	{ value: '15+', label: 'years as a software engineer' },
@@ -45,7 +44,11 @@ const facts = [
 						been the compiler for the{' '}
 						<a href="https://www.bloomingtoncbc.org/">Bloomington, MN Christmas Bird Count</a>, which has
 						run every year since 1966. Our circle has 24 count areas, so there's a lot to keep track of,
-						and that's where the software comes in.
+						and that's where the software comes in. Right now I'm
+						building{' '}
+						<a href="https://github.com/lizmstanley/cbc-circle-manager">CBC Circle Manager</a>, a
+						browser-based tool for compilers to track volunteers, area assignments, and results, and
+						Circle Scout.
 					</p>
 					<p>
 						It started in my own backyard. In 2008 I wanted to attract more birds, and the way to do
@@ -97,22 +100,16 @@ const facts = [
 						these days I play bass trombone with the{' '}
 						<a href="https://northernwindsconcertband.org/">Northern Winds Concert Band</a>.
 					</p>
-					<p>
+					<figure class="photo left clear">
+						<Image src={jerk} alt="Liz holding a barbell overhead in a split jerk" widths={[400, 570]} sizes="(max-width: 820px) 100vw, 22rem" />
+						<figcaption>Split jerk at a Team Spartacus meet.</figcaption>
+					</figure>
+					<p class="clear-right">
 						I used to compete in weightlifting and powerlifting. I lifted with Team Spartacus and won a
 						bronze medal at the 2013 Pan American Masters Championships in Chicago. On the powerlifting
 						side, I set a Minnesota masters bench press record at the 2014 USAPL Minnesota Senior State
 						Open (<a href="https://www.openpowerlifting.org/u/lizstanley">results</a>).
 					</p>
-					<div class="photo-pair">
-						<figure>
-							<Image src={jerk} alt="Liz holding a barbell overhead in a split jerk" widths={[400, 570]} sizes="(max-width: 820px) 50vw, 20rem" />
-							<figcaption>Split jerk at a Team Spartacus meet.</figcaption>
-						</figure>
-						<figure>
-							<Image src={squat} alt="Liz squatting a loaded barbell with spotters on each side" widths={[400, 800]} sizes="(max-width: 820px) 50vw, 20rem" />
-							<figcaption>Squatting at a powerlifting meet.</figcaption>
-						</figure>
-					</div>
 					<p>My code is on <a href={GITHUB_URL}>GitHub</a>, and my <a href="/resume">resume</a> is here.</p>
 				</div>
 				<aside>
@@ -158,6 +155,12 @@ const facts = [
 		float: right;
 		margin-left: 2rem;
 	}
+	.clear {
+		clear: both;
+	}
+	.clear-right {
+		clear: right;
+	}
 	.photo.left {
 		float: left;
 		margin-right: 2rem;
@@ -167,24 +170,7 @@ const facts = [
 		height: auto;
 		border-radius: var(--radius);
 	}
-	.photo-pair {
-		clear: both;
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 1.25rem;
-		margin: 0 0 1.25rem;
-	}
-	.photo-pair figure {
-		margin: 0;
-	}
-	.photo-pair img {
-		width: 100%;
-		height: 14rem;
-		object-fit: cover;
-		border-radius: var(--radius);
-	}
-	.photo figcaption,
-	.photo-pair figcaption {
+	.photo figcaption {
 		margin-top: 0.4rem;
 		font-size: 0.85rem;
 		color: var(--ink-soft);
@@ -232,9 +218,6 @@ const facts = [
 			width: 100%;
 			max-width: 100%;
 			margin: 0 0 1.25rem;
-		}
-		.photo-pair img {
-			height: 10rem;
 		}
 	}
 </style>
