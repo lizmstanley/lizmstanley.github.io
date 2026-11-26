@@ -1,7 +1,7 @@
 ---
 title: "Building tools for my bird count, with an AI that doesn't get to make the decisions"
 pubDate: 2026-11-24
-description: How I plan, scope, and review the CBC Circle Manager and Circle Scout apps while Claude Code writes most of the code.
+description: How I plan, scope, and review the CBC Circle Manager and CBC Scout apps while Claude Code writes most of the code.
 ---
 
 I've been the compiler for the [Bloomington, MN Christmas Bird Count](https://www.bloomingtoncbc.org/) since 2020. Our circle has been counted every year since 1966, and the 61st count is on December 19. It's a complex circle, divided into 24 areas over the south Twin Cities suburbs. Last year we had 63 field observers and 4 feeder counters, and they turned in 50 species and 7,380 birds, in 21-52 mph northwest winds.
@@ -16,13 +16,13 @@ It helped, but it's a bunch of scripts scattered about, and the roster still liv
 
 There was a second reason. At my full-time job, this last year has been a huge transition to AI. I've been using it heavily, out of necessity (and because it's been mandated.) I decided to take that experience and build this project from scratch with AI.
 
-So this November I started [CBC Circle Manager](https://lizmstanley.github.io/cbc-circle-manager/). It's a browser-only app for compilers: roster, area assignments, reminders, results tracking, and a map with the areas and eBird data. There's no server. The roster lives in a real Postgres database running inside the browser ([PGlite](https://pglite.dev)), saved to IndexedDB.
+So this November I started [CBC Circle Manager](/birdspotter/cbc/manager/). It's a browser-only app for compilers: roster, area assignments, reminders, results tracking, and a map with the areas and eBird data. There's no server. The roster lives in a real Postgres database running inside the browser ([PGlite](https://pglite.dev)), saved to IndexedDB.
 
 That choice came from two constraints: volunteer names and emails must stay on the compiler's computer, and there's no budget for hosting. The data is relational with real rules (one current season per circle, an area belongs to one circle), so I wanted a real SQL engine rather than JSON in local storage. The rules live in the database as constraints and views, so "open area" or "needs a reminder" has one definition, tested once against real Postgres. PGlite also means the schema could move to a server unchanged, if it ever needs to.
 
-## Circle Scout
+## CBC Scout
 
-The second app is for the counters themselves. Circle Scout installs to a phone's home screen as a web app. A counter scans a QR code from me, and their area shows up on the map. It follows them as they walk, says whether they're in their area, and (still to come) suggests hotspots and species from recent eBird sightings.
+The second app is for the counters themselves. [CBC Scout](/birdspotter/cbc/scout/) installs to a phone's home screen as a web app. A counter scans a QR code from me, and their area shows up on the map. It follows them as they walk, says whether they're in their area, and (still to come) suggests hotspots and species from recent eBird sightings.
 
 The plan had a short list of principles before any code:
 
@@ -44,15 +44,15 @@ I own the plan. Each project starts as a written plan: the outcome, the principl
 
 From there, each issue gets its own session. I launch a background session per issue, in its own git worktree, running a pipeline of skills I've built up over time: write a spec checked against the code, implement, verify, then several review passes before a PR opens. The PR description says what changed, why, what was rejected, how it was tested, and what was not verified. I review and merge.
 
-Checking terms and licenses is part of the work too. The map originally pulled tiles from `tile.openstreetmap.org`, whose usage policy targets light use, and Circle Scout would put that map on a lot of phones at once. So it moved to OpenFreeMap. The satellite view went away entirely, because Esri's World Imagery requires Esri software or a paid ArcGIS subscription.
+Checking terms and licenses is part of the work too. The map originally pulled tiles from `tile.openstreetmap.org`, whose usage policy targets light use, and CBC Scout would put that map on a lot of phones at once. So it moved to OpenFreeMap. The satellite view went away entirely, because Esri's World Imagery requires Esri software or a paid ArcGIS subscription.
 
-The first commit was November 22, and 14 PRs had merged by November 24, including the Circle Scout app shell, area QR codes, and live location.
+The first commit was November 22, and 14 PRs had merged by November 24, including the CBC Scout app shell, area QR codes, and live location.
 
 ## Where I still do the job
 
 The code comes fast. The judgment about what to build is still mine, and the field is where it shows up.
 
-While the location work was queued up, it occurred to me that counters will be running the eBird app at the same time, switching back and forth. Will Circle Scout still work? It turns out a web page gets no location at all while it's off screen, the browser drops the screen wake lock when the page is hidden, and iOS can close a home screen app in the background so it starts cold on return. None of the issues said what should happen when someone comes back. So the location and effort tracking issues were updated before they started: restart tracking on return, save the running session on every change, compute hours from saved start and stop times, and count each gap in the route as a straight line, flagged in the totals.
+While the location work was queued up, it occurred to me that counters will be running the eBird app at the same time, switching back and forth. Will CBC Scout still work? It turns out a web page gets no location at all while it's off screen, the browser drops the screen wake lock when the page is hidden, and iOS can close a home screen app in the background so it starts cold on return. None of the issues said what should happen when someone comes back. So the location and effort tracking issues were updated before they started: restart tracking on return, save the running session on every change, compute hours from saved start and stop times, and count each gap in the route as a straight line, flagged in the totals.
 
 The first suggestion for the miles was to just use the eBird app's own track. But not everyone will be using eBird. That went into the rejected list.
 

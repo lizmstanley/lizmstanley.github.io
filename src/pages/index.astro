@@ -44,9 +44,18 @@ const latestPosts = (await getPosts()).slice(0, LATEST_POST_COUNT);
 			</div>
 			<div class="grid">
 				<ProjectCard
+					kind="Phone app"
+					title="Birdspotter"
+					href="/birdspotter/app/"
+					stack={['PWA', 'MapLibre', 'eBird API']}
+				>
+					For any birder: a map of where you are, with recent sightings and eBird hotspots around
+					you. Installs to your phone's home screen.
+				</ProjectCard>
+				<ProjectCard
 					kind="Web app"
 					title="CBC Circle Manager"
-					href="/cbc-circle-manager/"
+					href="/birdspotter/cbc/manager/"
 					stack={['TypeScript', 'React', 'PGlite', 'MapLibre']}
 				>
 					A browser-only app for Christmas Bird Count compilers: roster, area assignments, and
@@ -54,12 +63,12 @@ const latestPosts = (await getPosts()).slice(0, LATEST_POST_COUNT);
 				</ProjectCard>
 				<ProjectCard
 					kind="Phone app"
-					title="Circle Scout"
-					href="/cbc-circle-manager/circle-scout/"
+					title="CBC Scout"
+					href="/birdspotter/cbc/scout/"
 					stack={['PWA', 'MapLibre', 'eBird API', 'QR codes']}
 				>
-					Installs to a counter's home screen, loads their area from a QR code, and shows where
-					they are in it.
+					For field counters: loads their area from a QR code, shows where they are in it and what's
+					been seen nearby, and records the party's hours and miles.
 				</ProjectCard>
 				<ProjectCard
 					kind="Scripts"
