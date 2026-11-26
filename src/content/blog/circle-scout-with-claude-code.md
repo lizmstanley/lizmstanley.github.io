@@ -67,3 +67,5 @@ Same with testing. The plan had a 30-minute outdoor walk as a check before the l
 ## What's next
 
 Recent sightings and hotspots by distance, rare birds nearby, directions, and effort tracking for party hours and miles. All of it needs to work on December 19.
+
+The count's website got rebuilt too, with the hand-drawn areas on a real map and staffing numbers for each one. That's in [its own post](/blog/bloomington-cbc-site/).
