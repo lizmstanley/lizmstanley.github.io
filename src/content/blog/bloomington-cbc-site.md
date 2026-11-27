@@ -36,6 +36,6 @@ Area 19 is a good example of why mode matters. It includes the MSP Airport cargo
 
 All of that is on the [Maps](https://www.bloomingtoncbc.org/count-info/maps/) page now. Each area shows its size, its hotspots, the minimum and ideal number of counters, the recommended mode, and notes on where to go. The page also explains how to install [CBC Scout](/birdspotter/cbc/scout/), the phone app that shows a counter their area and where they are in it.
 
-The next piece is a QR code next to each area. A counter scans it and their area loads in CBC Scout. Since those codes will be posted publicly, they leave out area leaders' phone numbers, and CBC Scout now opens to the map without an eBird key, so scanning a code is all it takes to see your area.
+Each area also has a QR code, on the page and on its printed map. A counter scans it with CBC Scout and their area loads. Since those codes are posted publicly, they leave out area leaders' phone numbers, and CBC Scout now opens to the map without an eBird key, so scanning a code is all it takes to see your area.
 
 Count day is December 19.
